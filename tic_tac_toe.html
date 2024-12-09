@@ -2,247 +2,53 @@
 <html>
     <head>
         <title>Tic-tac-toe</title>
-        <style type="text/css">
-            body {
-                text-align: center;
-                font-family: sans-serif;
-                overflow: hidden;
-            }
-            table {
-                margin-left: auto;
-                margin-right: auto;
-                border-spacing: 0;
-                border: 1px solid black;
-            }
-            td {
-                height: 50px;
-                width: 50px;
-                border: 1px solid black;
-                cursor: pointer;
-            }
-            div {
-                font-size: 30px;
-                font-weight: bold;
-            }
-            button {
-                height: 30px;
-                width: 120px;
-                font-weight: bold;
-            }
-            .cross {
-                float: left;
-                left: 10px;
-                position: relative;
-                overflow: hidden;
-                background-color: red;
-                width: 30px;
-                height: 30px;
-                display: none;
-            }
-            .cross b{
-                display: block;
-                position: absolute;
-                border: solid 15px rgba(255,255,255,0);
-            }
-            .cross b:nth-child(1){
-                border-top-color: #FFF;
-                top: -2px;
-            }
-            .cross b:nth-child(2){
-                border-left-color: #FFF;
-                left: -2px;
-            }
-            .cross b:nth-child(3){
-                border-bottom-color: #FFF;
-                bottom: -2px;
-            }
-            .cross b:nth-child(4){
-                border-right-color: #FFF;
-                right: -2px;
-            }
-
-            .ring {
-                height: 30px;
-                width: 30px;
-                border: 3px solid blue;
-                border-radius: 50%;
-                margin: auto;
-                display: none;
-            }
-        </style>
-        <script type="text/javascript">
-            const rows = [['x1','x2','x3'],['x4','x5','x6'],['x7','x8','x9'],['x1','x4','x7'],['x2','x5','x8'],['x3','x6','x9'],['x1','x5','x9'],['x3','x5','x7'],['o1','o2','o3'],['o4','o5','o6'],['o7','o8','o9'],['o1','o4','o7'],['o2','o5','o8'],['o3','o6','o9'],['o1','o5','o9'],['o3','o5','o7']];
-            var symbols = [];
-            var player = "x";
-            var include;
-            var symbol;
-            var end = false;
-            switch_players = function(){
-                if (player === "o"){
-                    window.player = "x";
-                }
-                else {
-                    window.player = "o";
-                }
-            }
-            check = function(){
-                for (let i=0; i<16; i++){
-                    include = true;
-                    for (let y=0; y<3; y++){
-                        include = include && symbols.includes(rows[i][y]);
-                    }
-                    if (include){
-                        end = true;
-                        for (symbol of symbols){
-                            if (!rows[i].includes(symbol)){
-                                document.getElementById(symbol).style.filter = "grayscale(100%)";
-                            }
-                        }
-                        if (player === "x"){
-                            document.body.innerHTML += "<div id='result'><div style='color:red'>Cross won!</div><button onclick='reset()'>New game</button></div>";
-                            break;
-                        }
-                        else {
-                            document.body.innerHTML += "<div id='result'><div style='color:blue'>Ring won!</div><button onclick='reset()'>New game</button></div>";
-                            break;
-                        }
-                    }
-                }
-                if (symbols.length == 9 && !end){
-                    for (symbol in symbols){
-                        document.getElementById(symbols[symbol]).style.filter = "grayscale(100%)";
-                    }
-                    document.body.innerHTML += "<div id='result'><div style='color:green'>Draw!</div><button onclick='reset()'>New game</button></div>";
-                }
-            }
-            one = function(){
-                if (document.getElementById("x1").style.display !== "block" && document.getElementById("o1").style.display !== "block" && !end){
-                    switch_players();
-                    document.getElementById(player+"1").style.display = "block";
-                    symbols.push(player+"1");
-                    check();
-                }
-            }
-            two = function(){
-                if (document.getElementById("x2").style.display !== "block" && document.getElementById("o2").style.display !== "block" && !end){
-                    switch_players();
-                    document.getElementById(player+"2").style.display = "block";
-                    symbols.push(player+"2");
-                    check();
-                }
-            }
-            three = function(){
-                if (document.getElementById("x3").style.display !== "block" && document.getElementById("o3").style.display !== "block" && !end){
-                    switch_players();
-                    document.getElementById(player+"3").style.display = "block";
-                    symbols.push(player+"3");
-                    check();
-                }
-            }
-            four = function(){
-                if (document.getElementById("x4").style.display !== "block" && document.getElementById("o4").style.display !== "block" && !end){
-                    switch_players();
-                    document.getElementById(player+"4").style.display = "block";
-                    symbols.push(player+"4");
-                    check();
-                }
-            }
-            five = function(){
-                if (document.getElementById("x5").style.display !== "block" && document.getElementById("o5").style.display !== "block" && !end){
-                    switch_players();
-                    document.getElementById(player+"5").style.display = "block";
-                    symbols.push(player+"5");
-                    check();
-                }
-            }
-            six = function(){
-                if (document.getElementById("x6").style.display !== "block" && document.getElementById("o6").style.display !== "block" && !end){
-                    switch_players();
-                    document.getElementById(player+"6").style.display = "block";
-                    symbols.push(player+"6");
-                    check();
-                }
-            }
-            seven = function(){
-                if (document.getElementById("x7").style.display !== "block" && document.getElementById("o7").style.display !== "block" && !end){
-                    switch_players();
-                    document.getElementById(player+"7").style.display = "block";
-                    symbols.push(player+"7");
-                    check();
-                }
-            }
-            eight = function(){
-                if (document.getElementById("x8").style.display !== "block" && document.getElementById("o8").style.display !== "block" && !end){
-                    switch_players();
-                    document.getElementById(player+"8").style.display = "block";
-                    symbols.push(player+"8");
-                    check();
-                }
-            }
-            nine = function(){
-                if (document.getElementById("x9").style.display !== "block" && document.getElementById("o9").style.display !== "block" && !end){
-                    switch_players();
-                    document.getElementById(player+"9").style.display = "block";
-                    symbols.push(player+"9");
-                    check();
-                }
-            }
-            reset = function(){
-                for (symbol of symbols){
-                    document.getElementById(symbol).style.display = "none";
-                    document.getElementById(symbol).style.filter = "grayscale(0%)";
-                }
-                document.getElementById("result").remove();
-                window.symbols = [];
-                player = "o";
-                window.end = false;
-            }
-        </script>
+        <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="script.js"></script>
     </head>
-        <body onload="switch_players()">
-            <table>
-                <tr>
-                    <td onclick="one()">
-                        <span class="cross" id="x1"><b></b><b></b><b></b><b></b></span>
-                        <span class="ring" id="o1"></span>
-                    </td>
-                    <td onclick="two()">
-                        <span class="cross" id="x2"><b></b><b></b><b></b><b></b></span>
-                        <span class="ring" id="o2"></span>
-                    </td>
-                    <td onclick="three()">
-                        <span class="cross" id="x3"><b></b><b></b><b></b><b></b></span>
-                        <span class="ring" id="o3"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td onclick="four()">
-                        <span class="cross" id="x4"><b></b><b></b><b></b><b></b></span>
-                        <span class="ring" id="o4"></span>
-                    </td>
-                    <td onclick="five()">
-                        <span class="cross" id="x5"><b></b><b></b><b></b><b></b></span>
-                        <span class="ring" id="o5"></span>
-                    </td>
-                    <td onclick="six()">
-                        <span class="cross" id="x6"><b></b><b></b><b></b><b></b></span>
-                        <span class="ring" id="o6"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td onclick="seven()">
-                        <span class="cross" id="x7"><b></b><b></b><b></b><b></b></span>
-                        <span class="ring" id="o7"></span>
-                    </td>
-                    <td onclick="eight()">
-                        <span class="cross" id="x8"><b></b><b></b><b></b><b></b></span>
-                        <span class="ring" id="o8"></span>
-                    </td>
-                    <td onclick="nine()">
-                        <span class="cross" id="x9"><b></b><b></b><b></b><b></b></span>
-                        <span class="ring" id="o9"></span>
-                    </td>
-                </tr>
-            </table>
-        </body>
+    <body onload="switch_players()">
+        <table>
+            <tr>
+                <td onclick="one()">
+                    <span class="cross" id="x1"><b></b><b></b><b></b><b></b></span>
+                    <span class="ring" id="o1"></span>
+                </td>
+                <td onclick="two()">
+                    <span class="cross" id="x2"><b></b><b></b><b></b><b></b></span>
+                    <span class="ring" id="o2"></span>
+                </td>
+                <td onclick="three()">
+                    <span class="cross" id="x3"><b></b><b></b><b></b><b></b></span>
+                    <span class="ring" id="o3"></span>
+                </td>
+            </tr>
+            <tr>
+                <td onclick="four()">
+                    <span class="cross" id="x4"><b></b><b></b><b></b><b></b></span>
+                    <span class="ring" id="o4"></span>
+                </td>
+                <td onclick="five()">
+                    <span class="cross" id="x5"><b></b><b></b><b></b><b></b></span>
+                    <span class="ring" id="o5"></span>
+                </td>
+                <td onclick="six()">
+                    <span class="cross" id="x6"><b></b><b></b><b></b><b></b></span>
+                    <span class="ring" id="o6"></span>
+                </td>
+            </tr>
+            <tr>
+                <td onclick="seven()">
+                    <span class="cross" id="x7"><b></b><b></b><b></b><b></b></span>
+                    <span class="ring" id="o7"></span>
+                </td>
+                <td onclick="eight()">
+                    <span class="cross" id="x8"><b></b><b></b><b></b><b></b></span>
+                    <span class="ring" id="o8"></span>
+                </td>
+                <td onclick="nine()">
+                    <span class="cross" id="x9"><b></b><b></b><b></b><b></b></span>
+                    <span class="ring" id="o9"></span>
+                </td>
+            </tr>
+        </table>
+    </body>
 </html>

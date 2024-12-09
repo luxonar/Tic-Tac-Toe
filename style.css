@@ -1,0 +1,66 @@
+body {
+    text-align: center;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 0;
+    border: 1px solid black;
+}
+td {
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+div {
+    font-size: 30px;
+    font-weight: bold;
+}
+button {
+    height: 30px;
+    width: 120px;
+    font-weight: bold;
+}
+.cross {
+    float: left;
+    left: 10px;
+    position: relative;
+    overflow: hidden;
+    background-color: red;
+    width: 30px;
+    height: 30px;
+    display: none;
+}
+.cross b{
+    display: block;
+    position: absolute;
+    border: solid 15px rgba(255,255,255,0);
+}
+.cross b:nth-child(1){
+    border-top-color: #FFF;
+    top: -2px;
+}
+.cross b:nth-child(2){
+    border-left-color: #FFF;
+    left: -2px;
+}
+.cross b:nth-child(3){
+    border-bottom-color: #FFF;
+    bottom: -2px;
+}
+.cross b:nth-child(4){
+    border-right-color: #FFF;
+    right: -2px;
+}
+
+.ring {
+    height: 30px;
+    width: 30px;
+    border: 3px solid blue;
+    border-radius: 50%;
+    margin: auto;
+    display: none;
+}
